@@ -1,5 +1,5 @@
 package chess;
-import java.security.InvalidParameterException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -143,7 +143,7 @@ public class ChessMatch {
 				throw new IllegalStateException("There is no piece to be promoted");
 			}
 			if(!type.equals("B")&&!type.equals("N")&&!type.equals("Q")&&!type.equals("R")) {
-				throw new InvalidParameterException("The piece selected is not valid");
+				return promoted;
 			}
 			Position pos = promoted.getChessPosition().toPosition();
 			Piece p = board.removePiece(pos);
@@ -252,7 +252,7 @@ public class ChessMatch {
 				if(p.getColor() == Color.WHITE) {
 					pawnPosition = new Position(3 , target.getColumn());
 				}else {pawnPosition = new Position(4 , target.getColumn());
-				}board.placePiece(capturedPiece, pawnPosition);
+				}board.placePiece(pawn, pawnPosition);
 				capturedPiece = board.removePiece(pawnPosition);
 				
 			}
